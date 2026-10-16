@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import tn.esprit.autoloc.domain.enumeration.StatutReservation;
 
 import java.time.LocalDate;
 
