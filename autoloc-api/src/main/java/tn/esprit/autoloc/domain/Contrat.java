@@ -2,6 +2,8 @@ package tn.esprit.autoloc.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +24,10 @@ public class Contrat {
     private LocalDate dateSignature;
     private BigDecimal montantTotal;
     private boolean valide;
+
+    @OneToOne
+    private Reservation reservation;
+
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
+    private Set<Paiement> paiements;
 }

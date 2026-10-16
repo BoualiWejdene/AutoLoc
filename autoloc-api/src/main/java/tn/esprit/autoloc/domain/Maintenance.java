@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "maintenance")
@@ -22,4 +23,8 @@ public class Maintenance {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String description;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
 }
