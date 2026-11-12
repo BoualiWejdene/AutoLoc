@@ -12,4 +12,9 @@ public interface IVehiculeService {
 
     public void removeVehicule(Long vehiculeId);
     public Vehicule modifyVehicule(Vehicule vehicule);
+
+    public Vehicule affecterVehicule(Long idVehicule, Long idAgence);
+
+    Vehicule affecterEquipement(Long idVehicule, Long idEquipement);
+    Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement);
 }

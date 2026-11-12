@@ -2,7 +2,11 @@ package tn.esprit.autoloc.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.autoloc.domain.Agence;
+import tn.esprit.autoloc.domain.Equipement;
 import tn.esprit.autoloc.domain.Vehicule;
+import tn.esprit.autoloc.repository.AgenceRepository;
+import tn.esprit.autoloc.repository.EquipementRepository;
 import tn.esprit.autoloc.repository.VehiculeRepository;
 
 import java.util.List;
@@ -10,6 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 public class VehiculeService implements IVehiculeService{
     final VehiculeRepository vehiculeRepository;
+    final AgenceRepository agenceRepository;
+    final EquipementRepository equipementRepository;
+
     @Override
     public List<Vehicule> retrieveAllVehicules() {
         return vehiculeRepository.findAll();
@@ -34,4 +41,39 @@ public class VehiculeService implements IVehiculeService{
     public Vehicule modifyVehicule(Vehicule vehicule) {
         return vehiculeRepository.save(vehicule);
     }
+
+    @Override
+    public Vehicule affecterVehicule(Long idVehicule, Long idAgence) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).get();
+        Agence agence = agenceRepository.findById(idAgence).get();
+
+
+        vehicule.setAgence(agence);
+
+        return vehiculeRepository.save(vehicule);
+
+    }
+
+    @Override
+    public Vehicule affecterEquipement(Long idVehicule, Long idEquipement) {
+
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).get();
+        Equipement equipement = equipementRepository.findById(idEquipement).get();
+
+        vehicule.getEquipements().add(equipement);
+
+        return vehiculeRepository.save(vehicule);
+    }
+
+    @Override
+    public Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule).get();
+        Equipement equipement = equipementRepository.findById(idEquipement).get();
+
+        vehicule.getEquipements().remove(equipement);
+
+        return vehiculeRepository.save(vehicule);
+    }
+
+
 }

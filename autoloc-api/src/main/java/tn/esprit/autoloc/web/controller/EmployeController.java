@@ -37,4 +37,14 @@ public class EmployeController {
     public void modifyEmploye(@RequestBody Employe e){
         iEmployeService.modifyEmploye(e);
     }
+
+    @PutMapping("/affecterEmploye/{idEmploye}/{idAgence}")
+    public Employe affecterEmploye(@PathVariable Long idEmploye, @PathVariable Long idAgence) {
+        return iEmployeService.affecterEmploye(idEmploye, idAgence);
+    }
+
+    @PutMapping("/desaffecterEmploye/{idEmploye}")
+    public Employe desaffecterEmploye(@PathVariable Long idEmploye) {
+        return iEmployeService.desaffecterEmploye(idEmploye);
+    }
 }
